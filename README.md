@@ -1,0 +1,1 @@
+# CodingDojo.Kata.BankOcr
