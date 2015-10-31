@@ -11,15 +11,23 @@ namespace CodingDojo.Kata.BankOcr
         private const string empty = "   ";
         private const string rigthPipe = "  |";
 
-        public int RecognizeNumber(string firstLine, string secondLine = null)
+        private IList<string> lines = new List<string>();
+
+        public void Feed(string line)
         {
-            if (firstLine == empty)
+            this.lines.Add(line);
+        }
+
+        public int RecognizeNumber()
+        {
+            if (this.lines[0] == empty)
             {
                 return 1;
             }
             else
             {
-                if (secondLine == rigthPipe)
+                if (this.lines.Count() == 2
+                    && this.lines[1] == rigthPipe)
                 {
                     return 2;
                 }

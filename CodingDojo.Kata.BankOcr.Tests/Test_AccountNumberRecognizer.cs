@@ -21,7 +21,9 @@ namespace CodingDojo.Kata.BankOcr.Tests
             [TestMethod]
             public void Should_recognize_one()
             {
-                var number = subject.RecognizeNumber("   ");
+                subject.Feed("   ");
+
+                var number = subject.RecognizeNumber();
 
                 number.Should().Be(1);
             }
@@ -29,7 +31,9 @@ namespace CodingDojo.Kata.BankOcr.Tests
             [TestMethod]
             public void Should_recognize_zero()
             {
-                var number = subject.RecognizeNumber(" _ ");
+                subject.Feed(" _ ");
+
+                var number = subject.RecognizeNumber();
 
                 number.Should().Be(0);
             }
@@ -37,9 +41,10 @@ namespace CodingDojo.Kata.BankOcr.Tests
             [TestMethod]
             public void Should_recognize_two()
             {
-                var number = subject.RecognizeNumber(
-                    " _ ",
-                    "  |");
+                subject.Feed(" _ ");
+                subject.Feed("  |");
+
+                var number = subject.RecognizeNumber();
 
                 number.Should().Be(2);
             }
