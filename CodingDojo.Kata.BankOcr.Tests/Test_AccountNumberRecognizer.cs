@@ -105,6 +105,18 @@ namespace CodingDojo.Kata.BankOcr.Tests
             }
 
             [TestMethod]
+            public void Should_recognize_seven()
+            {
+                subject.Feed(" _ ");
+                subject.Feed("  |");
+                subject.Feed("  |");
+
+                var number = subject.GetRecognizedNumber();
+
+                number.Should().Be(7);
+            }
+
+            [TestMethod]
             public void Should_throw_error_if_number_of_feeds_were_less_than_3()
             {
                 subject.Feed(fixture.Create<string>());

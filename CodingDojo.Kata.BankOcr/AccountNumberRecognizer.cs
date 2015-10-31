@@ -26,6 +26,7 @@ namespace CodingDojo.Kata.BankOcr
             numberRecognizers[4] = IsFour;
             numberRecognizers[5] = IsFive;
             numberRecognizers[6] = IsSix;
+            numberRecognizers[7] = IsSeven;
             this.numberRecognizers = numberRecognizers;
         }
 
@@ -72,6 +73,10 @@ namespace CodingDojo.Kata.BankOcr
         private bool IsSix() =>
             IsFirstLine(underscore)
             && IsThirdLine(uShape);
+
+        private bool IsSeven() =>
+            IsFirstLine(underscore)
+            && IsThirdLine(rigthPipe);
 
         private bool IsFirstLine(string pattern)
         {
