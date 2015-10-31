@@ -8,14 +8,22 @@ namespace CodingDojo.Kata.BankOcr
 {
     public class AccountNumberRecognizer
     {
-        public int RecognizeNumber(string v)
+        private const string empty = "   ";
+        private const string rigthPipe = "  |";
+
+        public int RecognizeNumber(string firstLine, string secondLine = null)
         {
-            if (v == "   ")
+            if (firstLine == empty)
             {
                 return 1;
             }
             else
             {
+                if (secondLine == rigthPipe)
+                {
+                    return 2;
+                }
+
                 return 0;
             }
         }

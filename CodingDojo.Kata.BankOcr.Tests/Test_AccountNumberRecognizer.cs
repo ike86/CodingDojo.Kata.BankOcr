@@ -16,11 +16,11 @@ namespace CodingDojo.Kata.BankOcr.Tests
   | _| _||_||_ |_   ||_||_|
   ||_  _|  | _||_|  ||_| _|";
 
+            private readonly AccountNumberRecognizer subject = new AccountNumberRecognizer();
+
             [TestMethod]
             public void Should_recognize_one()
             {
-                var subject = new AccountNumberRecognizer();
-
                 var number = subject.RecognizeNumber("   ");
 
                 number.Should().Be(1);
@@ -29,11 +29,19 @@ namespace CodingDojo.Kata.BankOcr.Tests
             [TestMethod]
             public void Should_recognize_zero()
             {
-                var subject = new AccountNumberRecognizer();
-
                 var number = subject.RecognizeNumber(" _ ");
 
                 number.Should().Be(0);
+            }
+
+            [TestMethod]
+            public void Should_recognize_two()
+            {
+                var number = subject.RecognizeNumber(
+                    " _ ",
+                    "  |");
+
+                number.Should().Be(2);
             }
         }
     }
