@@ -72,11 +72,17 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Test_AccountNumberRecognizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CodingDojo.Kata.BankOcr\CodingDojo.Kata.BankOcr.csproj">
+      <Project>{d377f9c7-61f8-4f2f-ac86-02a6a7da6683}</Project>
+      <Name>CodingDojo.Kata.BankOcr</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

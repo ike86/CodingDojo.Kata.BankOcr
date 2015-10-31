@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace CodingDojo.Kata.BankOcr
 {
-    public class Class1
+    public class AccountNumberRecognizer
     {
+        public int RecognizeNumber(string v)
+        {
+            return 1;
+        }
     }
 }
