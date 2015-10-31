@@ -1,6 +1,7 @@
 ﻿using System;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Ploeh.AutoFixture;
 
 namespace CodingDojo.Kata.BankOcr.Tests
 {
@@ -16,12 +17,15 @@ namespace CodingDojo.Kata.BankOcr.Tests
   | _| _||_||_ |_   ||_||_|
   ||_  _|  | _||_|  ||_| _|";
 
+            private readonly IFixture fixture = new Fixture();
             private readonly AccountNumberRecognizer subject = new AccountNumberRecognizer();
 
             [TestMethod]
             public void Should_recognize_one()
             {
                 subject.Feed("   ");
+                subject.Feed("  |");
+                subject.Feed("  |");
 
                 var number = subject.RecognizeNumber();
 
@@ -32,6 +36,8 @@ namespace CodingDojo.Kata.BankOcr.Tests
             public void Should_recognize_zero()
             {
                 subject.Feed(" _ ");
+                subject.Feed("| |");
+                subject.Feed("|_|");
 
                 var number = subject.RecognizeNumber();
 
@@ -43,6 +49,7 @@ namespace CodingDojo.Kata.BankOcr.Tests
             {
                 subject.Feed(" _ ");
                 subject.Feed(" _|");
+                subject.Feed("|_ ");
 
                 var number = subject.RecognizeNumber();
 
@@ -59,6 +66,18 @@ namespace CodingDojo.Kata.BankOcr.Tests
                 var number = subject.RecognizeNumber();
 
                 number.Should().Be(3);
+            }
+
+            [TestMethod]
+            public void Should_throw_error_if_number_of_feeds_were_less_than_3()
+            {
+                subject.Feed(fixture.Create<string>());
+                subject.Feed(fixture.Create<string>());
+
+                Action act = () =>
+                    subject.RecognizeNumber();
+
+                act.ShouldThrow<InvalidOperationException>();
             }
         }
     }
