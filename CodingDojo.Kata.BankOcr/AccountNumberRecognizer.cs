@@ -28,6 +28,7 @@ namespace CodingDojo.Kata.BankOcr
             numberRecognizers[6] = IsSix;
             numberRecognizers[7] = IsSeven;
             numberRecognizers[8] = IsEigth;
+            numberRecognizers[9] = IsNine;
             this.numberRecognizers = numberRecognizers;
         }
 
@@ -69,6 +70,7 @@ namespace CodingDojo.Kata.BankOcr
 
         private bool IsFive() =>
             IsFirstLine(underscore)
+            && IsSecondLine(lShape)
             && IsThirdLine(invertedLShape);
 
         private bool IsSix() =>
@@ -82,7 +84,13 @@ namespace CodingDojo.Kata.BankOcr
 
         private bool IsEigth() =>
             IsFirstLine(underscore)
-            && IsSecondLine(uShape);
+            && IsSecondLine(uShape)
+            && IsThirdLine(uShape);
+
+        private bool IsNine() =>
+            IsFirstLine(underscore)
+            && IsSecondLine(uShape)
+            && IsThirdLine(invertedLShape);
 
         private bool IsFirstLine(string pattern) =>
             this.lines[0] == pattern;
