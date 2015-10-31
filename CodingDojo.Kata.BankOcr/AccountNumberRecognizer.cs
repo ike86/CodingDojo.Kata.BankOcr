@@ -8,8 +8,8 @@ namespace CodingDojo.Kata.BankOcr
     {
         private const string empty = "   ";
         private const string underscore = " _ ";
-        private const string lShape = " _|";
-        private const string invertedLShape = "|_ ";
+        private const string invertedLShape = " _|";
+        private const string lShape = "|_ ";
         private const string pipes = "| |";
         private const string rigthPipe = "  |";
         private const string uShape = "|_|";
@@ -27,6 +27,7 @@ namespace CodingDojo.Kata.BankOcr
             numberRecognizers[5] = IsFive;
             numberRecognizers[6] = IsSix;
             numberRecognizers[7] = IsSeven;
+            numberRecognizers[8] = IsEigth;
             this.numberRecognizers = numberRecognizers;
         }
 
@@ -55,12 +56,12 @@ namespace CodingDojo.Kata.BankOcr
             && IsSecondLine(rigthPipe);
 
         private bool IsTwo() =>
-            IsSecondLine(lShape)
-            && IsThirdLine(invertedLShape);
+            IsSecondLine(invertedLShape)
+            && IsThirdLine(lShape);
 
         private bool IsThree() =>
-            IsSecondLine(lShape)
-            && IsThirdLine(lShape);
+            IsSecondLine(invertedLShape)
+            && IsThirdLine(invertedLShape);
 
         private bool IsFour() =>
             IsSecondLine(uShape)
@@ -68,29 +69,28 @@ namespace CodingDojo.Kata.BankOcr
 
         private bool IsFive() =>
             IsFirstLine(underscore)
-            && IsThirdLine(lShape);
+            && IsThirdLine(invertedLShape);
 
         private bool IsSix() =>
             IsFirstLine(underscore)
+            && IsSecondLine(lShape)
             && IsThirdLine(uShape);
 
         private bool IsSeven() =>
             IsFirstLine(underscore)
             && IsThirdLine(rigthPipe);
 
-        private bool IsFirstLine(string pattern)
-        {
-            return this.lines[0] == pattern;
-        }
+        private bool IsEigth() =>
+            IsFirstLine(underscore)
+            && IsSecondLine(uShape);
 
-        private bool IsSecondLine(string pattern)
-        {
-            return this.lines[1] == pattern;
-        }
+        private bool IsFirstLine(string pattern) =>
+            this.lines[0] == pattern;
 
-        private bool IsThirdLine(string pattern)
-        {
-            return this.lines[2] == pattern;
-        }
+        private bool IsSecondLine(string pattern) =>
+            this.lines[1] == pattern;
+
+        private bool IsThirdLine(string pattern) =>
+            this.lines[2] == pattern;
     }
 }

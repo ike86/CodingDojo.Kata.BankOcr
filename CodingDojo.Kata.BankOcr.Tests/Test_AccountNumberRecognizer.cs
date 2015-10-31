@@ -117,6 +117,18 @@ namespace CodingDojo.Kata.BankOcr.Tests
             }
 
             [TestMethod]
+            public void Should_recognize_eigth()
+            {
+                subject.Feed(" _ ");
+                subject.Feed("|_|");
+                subject.Feed("|_|");
+
+                var number = subject.GetRecognizedNumber();
+
+                number.Should().Be(8);
+            }
+
+            [TestMethod]
             public void Should_throw_error_if_number_of_feeds_were_less_than_3()
             {
                 subject.Feed(fixture.Create<string>());
