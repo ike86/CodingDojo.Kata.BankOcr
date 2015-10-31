@@ -10,7 +10,7 @@ namespace CodingDojo.Kata.BankOcr.Tests
     {
 
         [TestClass]
-        public class RecognizeNumber
+        public class GetRecognizedNumber
         {
             private const string numbers = @"
     _  _     _  _  _  _  _ 
@@ -27,7 +27,7 @@ namespace CodingDojo.Kata.BankOcr.Tests
                 subject.Feed("  |");
                 subject.Feed("  |");
 
-                var number = subject.RecognizeNumber();
+                var number = subject.GetRecognizedNumber();
 
                 number.Should().Be(1);
             }
@@ -39,7 +39,7 @@ namespace CodingDojo.Kata.BankOcr.Tests
                 subject.Feed("| |");
                 subject.Feed("|_|");
 
-                var number = subject.RecognizeNumber();
+                var number = subject.GetRecognizedNumber();
 
                 number.Should().Be(0);
             }
@@ -51,7 +51,7 @@ namespace CodingDojo.Kata.BankOcr.Tests
                 subject.Feed(" _|");
                 subject.Feed("|_ ");
 
-                var number = subject.RecognizeNumber();
+                var number = subject.GetRecognizedNumber();
 
                 number.Should().Be(2);
             }
@@ -63,9 +63,21 @@ namespace CodingDojo.Kata.BankOcr.Tests
                 subject.Feed(" _|");
                 subject.Feed(" _|");
 
-                var number = subject.RecognizeNumber();
+                var number = subject.GetRecognizedNumber();
 
                 number.Should().Be(3);
+            }
+
+            [TestMethod]
+            public void Should_recognize_four()
+            {
+                subject.Feed("   ");
+                subject.Feed("|_|");
+                subject.Feed("  |");
+
+                var number = subject.GetRecognizedNumber();
+
+                number.Should().Be(4);
             }
 
             [TestMethod]
@@ -75,7 +87,7 @@ namespace CodingDojo.Kata.BankOcr.Tests
                 subject.Feed(fixture.Create<string>());
 
                 Action act = () =>
-                    subject.RecognizeNumber();
+                    subject.GetRecognizedNumber();
 
                 act.ShouldThrow<InvalidOperationException>();
             }

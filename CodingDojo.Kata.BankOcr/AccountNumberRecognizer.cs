@@ -13,7 +13,8 @@ namespace CodingDojo.Kata.BankOcr
         private const string lShape = " _|";
         private const string invertedLShape = "|_ ";
         private const string pipes = "| |";
-
+        private const string rigthPipe = "  |";
+        private const string uShape = "|_|";
         private List<string> lines = new List<string>();
         private readonly IReadOnlyDictionary<int, Func<IReadOnlyList<string>, bool>> numberRecognizers;
 
@@ -24,6 +25,7 @@ namespace CodingDojo.Kata.BankOcr
             numberRecognizers[1] = IsOne;
             numberRecognizers[2] = IsTwo;
             numberRecognizers[3] = IsThree;
+            numberRecognizers[4] = IsFour;
             this.numberRecognizers = numberRecognizers;
         }
 
@@ -32,7 +34,7 @@ namespace CodingDojo.Kata.BankOcr
             this.lines.Add(line);
         }
 
-        public int RecognizeNumber()
+        public int GetRecognizedNumber()
         {
             if (lines.Count() < 3)
             {
@@ -48,7 +50,8 @@ namespace CodingDojo.Kata.BankOcr
             && lines[1] == pipes;
 
         private static bool IsOne(IReadOnlyList<string> lines) =>
-            lines[0] == empty;
+            lines[0] == empty
+            && lines[1] == rigthPipe;
 
         private static bool IsTwo(IReadOnlyList<string> lines) =>
             lines[1] == lShape
@@ -57,5 +60,9 @@ namespace CodingDojo.Kata.BankOcr
         private static bool IsThree(IReadOnlyList<string> lines) =>
             lines[1] == lShape
             && lines[2] == lShape;
+
+        private static bool IsFour(IReadOnlyList<string> lines) =>
+            lines[1] == uShape
+            && lines[2] == rigthPipe;
     }
 }
