@@ -10,7 +10,14 @@ namespace CodingDojo.Kata.BankOcr
     {
         public int RecognizeNumber(string v)
         {
-            return 1;
+            if (v == "   ")
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 }

@@ -25,6 +25,16 @@ namespace CodingDojo.Kata.BankOcr.Tests
 
                 number.Should().Be(1);
             }
+
+            [TestMethod]
+            public void Should_recognize_zero()
+            {
+                var subject = new AccountNumberRecognizer();
+
+                var number = subject.RecognizeNumber(" _ ");
+
+                number.Should().Be(0);
+            }
         }
     }
 }
