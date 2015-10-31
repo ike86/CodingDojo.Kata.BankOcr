@@ -42,7 +42,7 @@ namespace CodingDojo.Kata.BankOcr.Tests
             public void Should_recognize_two()
             {
                 subject.Feed(" _ ");
-                subject.Feed("  |");
+                subject.Feed(" _|");
 
                 var number = subject.RecognizeNumber();
 

@@ -9,7 +9,7 @@ namespace CodingDojo.Kata.BankOcr
     public class AccountNumberRecognizer
     {
         private const string empty = "   ";
-        private const string rigthPipe = "  |";
+        private const string lShape = " _|";
 
         private IList<string> lines = new List<string>();
 
@@ -27,7 +27,7 @@ namespace CodingDojo.Kata.BankOcr
             else
             {
                 if (this.lines.Count() == 2
-                    && this.lines[1] == rigthPipe)
+                    && this.lines[1] == lShape)
                 {
                     return 2;
                 }
