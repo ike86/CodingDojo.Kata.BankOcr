@@ -26,9 +26,15 @@ namespace CodingDojo.Kata.BankOcr
             }
             else
             {
-                if (this.lines.Count() == 2
+                if (this.lines.Count() >= 2
                     && this.lines[1] == lShape)
                 {
+                    if (this.lines.Count() == 3
+                      && this.lines[2] == lShape)
+                    {
+                        return 3;
+                    }
+
                     return 2;
                 }
 

@@ -48,6 +48,18 @@ namespace CodingDojo.Kata.BankOcr.Tests
 
                 number.Should().Be(2);
             }
+
+            [TestMethod]
+            public void Should_recognize_three()
+            {
+                subject.Feed(" _ ");
+                subject.Feed(" _|");
+                subject.Feed(" _|");
+
+                var number = subject.RecognizeNumber();
+
+                number.Should().Be(3);
+            }
         }
     }
 }
